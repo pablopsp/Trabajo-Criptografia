@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Criptografia.Maestro.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Trabajo_Criptografia
+namespace Criptografia.Maestro
 {
     static class Program
     {
@@ -16,7 +17,7 @@ namespace Trabajo_Criptografia
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MultiFormContext(new MaestroForm(), new EsclavoFrom()));
         }
     }
 }

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Trabajo_Criptografia
+namespace Criptografia.Maestro.Forms
 {
-    public partial class Form1 : Form
+    public partial class EsclavoFrom : Form
     {
-        public Form1()
+        public EsclavoFrom()
         {
             InitializeComponent();
         }

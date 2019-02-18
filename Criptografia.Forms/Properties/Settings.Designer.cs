@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Trabajo_Criptografia.Properties
+namespace Criptografia.Maestro.Properties
 {
 
 

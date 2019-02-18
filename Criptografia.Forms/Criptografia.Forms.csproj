@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EB06E26A-3B58-4229-ADBD-C8CECEC46EAE}</ProjectGuid>
+    <ProjectGuid>{2AC9DE37-4EA9-44FA-9865-E2A8D29EE331}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Trabajo_Criptografia</RootNamespace>
-    <AssemblyName>Trabajo-Criptografia</AssemblyName>
+    <RootNamespace>Criptografia.Maestro</RootNamespace>
+    <AssemblyName>Criptografia.Maestro</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,14 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\EsclavoFrom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\EsclavoFrom.Designer.cs">
+      <DependentUpon>EsclavoFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MaestroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MaestroForm.Designer.cs">
+      <DependentUpon>MaestroForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiFormContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\MaestroForm.resx">
+      <DependentUpon>MaestroForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
