@@ -8,9 +8,8 @@ using System.Text;
 
 namespace Criptografia.WebServices
 {
-    [ServiceContract]
-    public interface ICriptService
+    public class CriptWebService : ICriptWebService
     {
-        
+        public string SayHello() => "hello";
     }
 }

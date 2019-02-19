@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Criptografia.WebServices.CriptService" CodeBehind="CriptService.svc.cs" %>
