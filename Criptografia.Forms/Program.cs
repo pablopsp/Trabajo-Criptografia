@@ -1,8 +1,5 @@
 ﻿using Criptografia.Maestro.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Criptografia.Maestro
@@ -17,7 +14,7 @@ namespace Criptografia.Maestro
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MultiFormContext(new MaestroForm(), new EsclavoFrom()));
+            Application.Run(new MultiFormContext(new MaestroForm(), new EsclavoForm()));
         }
     }
 }

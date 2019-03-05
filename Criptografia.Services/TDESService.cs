@@ -8,6 +8,7 @@ namespace Criptografia.Services
 {
     public class TDESService
     {
-
+        public string Word() => "Hola desde csharp";
+        public Task<object> SayHello(object obj) => Task.Factory.StartNew( () => Word() as object);
     }
 }

@@ -1,5 +1,4 @@
-﻿using Criptografia.Utilities.Cript;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,5 +17,9 @@ namespace Criptografia.Maestro
             InitializeComponent();
         }
 
+        private void CloseImage_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

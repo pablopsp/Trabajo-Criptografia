@@ -61,6 +61,9 @@
     <Compile Include="MultiFormContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\EsclavoFrom.resx">
+      <DependentUpon>EsclavoFrom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MaestroForm.resx">
       <DependentUpon>MaestroForm.cs</DependentUpon>
     </EmbeddedResource>
