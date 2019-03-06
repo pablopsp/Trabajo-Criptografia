@@ -89,5 +89,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Criptografia.Services\Criptografia.Services.csproj">
+      <Project>{4073580F-B7DB-42DB-8A50-B33215A4183A}</Project>
+      <Name>Criptografia.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

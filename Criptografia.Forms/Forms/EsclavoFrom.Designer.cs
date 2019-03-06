@@ -34,8 +34,6 @@
             this.BtnGenerateRSA = new System.Windows.Forms.Button();
             this.LblPrivClave = new System.Windows.Forms.Label();
             this.LblPublicClave = new System.Windows.Forms.Label();
-            this.LblClavePriValue = new System.Windows.Forms.Label();
-            this.LblClavePublicValue = new System.Windows.Forms.Label();
             this.BtnExportRSA = new System.Windows.Forms.Button();
             this.BtnImportTDES = new System.Windows.Forms.Button();
             this.LblTDESEncrypted = new System.Windows.Forms.Label();
@@ -85,6 +83,7 @@
             this.BtnGenerateRSA.TabIndex = 4;
             this.BtnGenerateRSA.Text = "Generar claves RSA";
             this.BtnGenerateRSA.UseVisualStyleBackColor = true;
+            this.BtnGenerateRSA.Click += new System.EventHandler(this.BtnGenerateRSA_Click);
             // 
             // LblPrivClave
             // 
@@ -105,24 +104,7 @@
             this.LblPublicClave.Size = new System.Drawing.Size(108, 16);
             this.LblPublicClave.TabIndex = 8;
             this.LblPublicClave.Text = "Clave Pública:";
-            // 
-            // LblClavePriValue
-            // 
-            this.LblClavePriValue.AutoSize = true;
-            this.LblClavePriValue.Location = new System.Drawing.Point(357, 144);
-            this.LblClavePriValue.Name = "LblClavePriValue";
-            this.LblClavePriValue.Size = new System.Drawing.Size(35, 13);
-            this.LblClavePriValue.TabIndex = 13;
-            this.LblClavePriValue.Text = "label2";
-            // 
-            // LblClavePublicValue
-            // 
-            this.LblClavePublicValue.AutoSize = true;
-            this.LblClavePublicValue.Location = new System.Drawing.Point(357, 118);
-            this.LblClavePublicValue.Name = "LblClavePublicValue";
-            this.LblClavePublicValue.Size = new System.Drawing.Size(35, 13);
-            this.LblClavePublicValue.TabIndex = 12;
-            this.LblClavePublicValue.Text = "label1";
+
             // 
             // BtnExportRSA
             // 
@@ -175,6 +157,7 @@
             this.MssgToEncrypt.Name = "MssgToEncrypt";
             this.MssgToEncrypt.Size = new System.Drawing.Size(314, 20);
             this.MssgToEncrypt.TabIndex = 19;
+            this.MssgToEncrypt.Text = "Text to encrypt";
             this.MssgToEncrypt.GotFocus += new System.EventHandler(this.RemovePlaceholder);
             this.MssgToEncrypt.LostFocus += new System.EventHandler(this.AddPlaceholder);
             // 
@@ -220,8 +203,6 @@
             this.Controls.Add(this.LblTDESEncrypted);
             this.Controls.Add(this.BtnImportTDES);
             this.Controls.Add(this.BtnExportRSA);
-            this.Controls.Add(this.LblClavePriValue);
-            this.Controls.Add(this.LblClavePublicValue);
             this.Controls.Add(this.LblPrivClave);
             this.Controls.Add(this.LblPublicClave);
             this.Controls.Add(this.BtnGenerateRSA);
@@ -247,8 +228,6 @@
         private System.Windows.Forms.Button BtnGenerateRSA;
         private System.Windows.Forms.Label LblPrivClave;
         private System.Windows.Forms.Label LblPublicClave;
-        private System.Windows.Forms.Label LblClavePriValue;
-        private System.Windows.Forms.Label LblClavePublicValue;
         private System.Windows.Forms.Button BtnExportRSA;
         private System.Windows.Forms.Button BtnImportTDES;
         private System.Windows.Forms.Label LblTDESEncrypted;
