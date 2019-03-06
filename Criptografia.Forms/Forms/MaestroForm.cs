@@ -83,7 +83,7 @@ namespace Criptografia.Maestro
         {
             OpenFileDialog fileDialog = new OpenFileDialog
             {
-                InitialDirectory = "c:\\",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
                 DefaultExt = "xml",
                 Filter = "XML Files (*.xml)|*.xml",
                 FilterIndex = 0,
