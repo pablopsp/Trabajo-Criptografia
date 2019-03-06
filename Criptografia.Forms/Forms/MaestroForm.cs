@@ -2,6 +2,7 @@
 using Criptografia.Services;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Criptografia.Maestro
@@ -60,14 +61,56 @@ namespace Criptografia.Maestro
         }
         private void GenerateRSA()
         {
-            string[] keys = RSAService.GeneratePrivateAndPublicKey();
+            string[] keys = Services.Crypt.RSAService.GeneratePrivateAndPublicKey();
             LblClavePublicValue.Text = keys[0];
             LblClavePriValue.Text = keys[1];
             EsclavoForm.LblClavePublicValue.Text = keys[0];
             EsclavoForm.LblClavePriValue.Text = keys[1];
         }
 
-        private void LblClavePublicValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePublicValue.Text);
-        private void LblClavePriValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePriValue.Text);
+        private void LblClavePublicValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePublicValue.Text,
+            "Valor clave publica",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+        private void LblClavePriValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePriValue.Text,
+            "Valor clave privada",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        private void BtnImportRSA_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                InitialDirectory = "c:\\",
+                DefaultExt = "xml",
+                Filter = "XML Files (*.xml)|*.xml",
+                FilterIndex = 0,
+                RestoreDirectory = true
+            };
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (!String.Equals(Path.GetExtension(fileDialog.FileName),
+                                   ".xml",
+                                   StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("The type of the selected file is not supported by this application. You must select an XML file.",
+                                    "Invalid File Type",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    BtnImportRSA_Click(sender, e);
+                }
+                else
+                {
+                    string rsa = Services.XML.Import.ImportPublicRSA(fileDialog.FileName).ToString();
+                    LblClavePublicaEsclavo.Text = rsa;
+                }
+            }
+        }
+
+        private void LblClavePublicaEsclavo_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePublicaEsclavo.Text, 
+            "Valor clave publica del esclavo", 
+            MessageBoxButtons.OK, 
+            MessageBoxIcon.Information);
     }
 }

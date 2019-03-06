@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Criptografia.Services
+namespace Criptografia.Services.Crypt
 {
     public class TDESService
     {

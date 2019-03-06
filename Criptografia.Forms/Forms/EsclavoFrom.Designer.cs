@@ -104,7 +104,6 @@
             this.LblPublicClave.Size = new System.Drawing.Size(108, 16);
             this.LblPublicClave.TabIndex = 8;
             this.LblPublicClave.Text = "Clave Pública:";
-
             // 
             // BtnExportRSA
             // 
@@ -114,6 +113,7 @@
             this.BtnExportRSA.TabIndex = 14;
             this.BtnExportRSA.Text = "Exportar a XML clave pública";
             this.BtnExportRSA.UseVisualStyleBackColor = true;
+            this.BtnExportRSA.Click += new System.EventHandler(this.BtnExportRSA_Click);
             // 
             // BtnImportTDES
             // 

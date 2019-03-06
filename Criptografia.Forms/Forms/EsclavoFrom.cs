@@ -1,5 +1,6 @@
 ﻿using Criptografia.Services;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -66,14 +67,32 @@ namespace Criptografia.Maestro.Forms
         }
         private void GenerateRSA()
         {
-            string[] keys = RSAService.GeneratePrivateAndPublicKey();
+            string[] keys = Services.Crypt.RSAService.GeneratePrivateAndPublicKey();
             LblClavePublicValue.Text = keys[0];
             LblClavePriValue.Text = keys[1];
             MaestroForm.LblClavePublicValue.Text = keys[0];
             MaestroForm.LblClavePriValue.Text = keys[1];
         }
 
-        private void LblClavePublicValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePublicValue.Text);
-        private void LblClavePriValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePriValue.Text);
+        private void LblClavePublicValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePublicValue.Text,
+            "Valor clave publica",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+        private void LblClavePriValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePriValue.Text,
+            "Valor clave privada",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        private void BtnExportRSA_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(LblClavePublicValue.Text))
+                Services.XML.Export.ExportPublicRSA(LblClavePublicValue.Text, "cp_esclavo.xml");
+
+            else
+                MessageBox.Show("Debe generar primero un valor para la clave publica RSA",
+                                "Error to export",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+        }
     }
 }

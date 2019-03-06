@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
+using XMLCreate;
 
-namespace Criptografia.Services
+namespace Criptografia.Services.Crypt
 {
     public class RSAService
     {

@@ -113,15 +113,16 @@
             this.BtnImportRSA.TabIndex = 8;
             this.BtnImportRSA.Text = "Importar clave pública RSA Esclavo";
             this.BtnImportRSA.UseVisualStyleBackColor = true;
+            this.BtnImportRSA.Click += new System.EventHandler(this.BtnImportRSA_Click);
             // 
             // LblClavePublicaEsclavo
             // 
             this.LblClavePublicaEsclavo.AutoSize = true;
             this.LblClavePublicaEsclavo.Location = new System.Drawing.Point(277, 220);
             this.LblClavePublicaEsclavo.Name = "LblClavePublicaEsclavo";
-            this.LblClavePublicaEsclavo.Size = new System.Drawing.Size(35, 13);
+            this.LblClavePublicaEsclavo.Size = new System.Drawing.Size(0, 13);
             this.LblClavePublicaEsclavo.TabIndex = 9;
-            this.LblClavePublicaEsclavo.Text = "label1";
+            this.LblClavePublicaEsclavo.Click += new System.EventHandler(this.LblClavePublicaEsclavo_Click);
             // 
             // LblClaveTDES
             // 
