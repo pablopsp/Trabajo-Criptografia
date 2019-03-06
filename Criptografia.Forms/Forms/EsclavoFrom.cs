@@ -86,7 +86,9 @@ namespace Criptografia.Maestro.Forms
         private void BtnExportRSA_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(LblClavePublicValue.Text))
-                Services.XML.Export.ExportPublicRSA(LblClavePublicValue.Text, "cp_esclavo.xml");
+                Services.XML.Export.ExportPublicRSA(LblClavePublicValue.Text, 
+                                                    Environment.GetFolderPath(
+                                                        Environment.SpecialFolder.Desktop) + @"\cp_esclavo.xml");
 
             else
                 MessageBox.Show("Debe generar primero un valor para la clave publica RSA",

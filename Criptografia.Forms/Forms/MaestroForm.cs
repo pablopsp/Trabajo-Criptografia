@@ -1,8 +1,10 @@
 ﻿using Criptografia.Maestro.Forms;
 using Criptografia.Services;
+using Criptografia.Services.Crypt;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Criptografia.Maestro
@@ -107,10 +109,19 @@ namespace Criptografia.Maestro
                 }
             }
         }
-
         private void LblClavePublicaEsclavo_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePublicaEsclavo.Text, 
             "Valor clave publica del esclavo", 
             MessageBoxButtons.OK, 
+            MessageBoxIcon.Information);
+
+        private void BtnGenerateTDES_Click(object sender, EventArgs e)
+        {
+            string TDESKey = Encoding.UTF8.GetString(TDESService.GenerateKey());
+            LblClaveTDES.Text = TDESKey;
+        }
+        private void LblClaveTDES_Click(object sender, EventArgs e) => MessageBox.Show(LblClaveTDES.Text,
+            "Valor clave TDES",
+            MessageBoxButtons.OK,
             MessageBoxIcon.Information);
     }
 }

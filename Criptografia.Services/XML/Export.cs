@@ -9,14 +9,14 @@ namespace Criptografia.Services.XML
 {
     public class Export
     {
-        public static void ExportPublicRSA(string publicKey, string fileName)
+        public static void ExportPublicRSA(string publicKey, string filePathWithName)
         {
             IDictionary<string, string> dict = new Dictionary<string, string>
             {
                 { "clavepublica", publicKey }
             };
 
-            SimpleXMLCreate.FlatXML(dict, fileName);
+            SimpleXMLCreate.FlatXML(dict, filePathWithName);
         }
     }
 }

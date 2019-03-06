@@ -129,9 +129,9 @@
             this.LblClaveTDES.AutoSize = true;
             this.LblClaveTDES.Location = new System.Drawing.Point(277, 282);
             this.LblClaveTDES.Name = "LblClaveTDES";
-            this.LblClaveTDES.Size = new System.Drawing.Size(35, 13);
+            this.LblClaveTDES.Size = new System.Drawing.Size(0, 13);
             this.LblClaveTDES.TabIndex = 11;
-            this.LblClaveTDES.Text = "label2";
+            this.LblClaveTDES.Click += new System.EventHandler(this.LblClaveTDES_Click);
             // 
             // BtnGenerateTDES
             // 
@@ -141,6 +141,7 @@
             this.BtnGenerateTDES.TabIndex = 13;
             this.BtnGenerateTDES.Text = "Generar clave TDES";
             this.BtnGenerateTDES.UseVisualStyleBackColor = true;
+            this.BtnGenerateTDES.Click += new System.EventHandler(this.BtnGenerateTDES_Click);
             // 
             // BtnEncryptTDES
             // 
