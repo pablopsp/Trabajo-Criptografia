@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Criptografia.Maestro.Forms
@@ -18,7 +20,7 @@ namespace Criptografia.Maestro.Forms
             // LblClavePriValue
             // 
             LblClavePriValue.AutoSize = true;
-            LblClavePriValue.Location = new Point(357, 144);
+            LblClavePriValue.Location = new Point(320, 144);
             LblClavePriValue.Name = "LblClavePriValue";
             LblClavePriValue.Size = new Size(0, 13);
             LblClavePriValue.TabIndex = 13;
@@ -27,7 +29,7 @@ namespace Criptografia.Maestro.Forms
             // LblClavePublicValue
             // 
             LblClavePublicValue.AutoSize = true;
-            LblClavePublicValue.Location = new Point(357, 118);
+            LblClavePublicValue.Location = new Point(320, 118);
             LblClavePublicValue.Name = "LblClavePublicValue";
             LblClavePublicValue.Size = new Size(0, 13);
             LblClavePublicValue.TabIndex = 12;
@@ -95,6 +97,56 @@ namespace Criptografia.Maestro.Forms
                                 "Error to export",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
+        }
+
+        private void BtnImportTDES_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                DefaultExt = "xml",
+                Filter = "XML Files (*.xml)|*.xml",
+                FilterIndex = 0,
+                RestoreDirectory = true
+            };
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (!String.Equals(Path.GetExtension(fileDialog.FileName),
+                                   ".xml",
+                                   StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("The type of the selected file is not supported by this application. You must select an XML file.",
+                                    "Invalid File Type",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    BtnImportTDES_Click(sender, e);
+                }
+                else
+                {
+                    string rsa = Services.XML.Import.ImportEncryptedTDES(fileDialog.FileName).ToString();
+                    byte[] arrByteTDES = Services.Util.ByteTransform.GetByteArrayOnString(rsa);
+                    LblTDESEncrypted.Text = Encoding.Default.GetString(arrByteTDES);
+                }
+            }
+        }
+        private void LblTDESEncrypted_Click(object sender, EventArgs e) => MessageBox.Show(LblTDESEncrypted.Text,
+            "Valor clave privada",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        private void BtnDecryptTDES_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(LblTDESEncrypted.Text))
+                MessageBox.Show("Debe haber importado primero la clave TDES Encriptada.",
+                                    "Wrong way",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+            else
+            {
+                byte[] decriptedKey = Services.Crypt.RSAService.Decrypt(Encoding.Default.GetBytes(LblTDESEncrypted.Text), LblClavePriValue.Text);
+                LblTDESDecrypted.Text = Encoding.Default.GetString(decriptedKey);
+            }
         }
     }
 }

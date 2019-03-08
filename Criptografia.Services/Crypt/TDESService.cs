@@ -9,6 +9,7 @@ namespace Criptografia.Services.Crypt
 {
     public class TDESService
     {
-        public static byte[] GenerateKey() => TripleDES.Create().Key;
+        public static byte[] TDESKey => TripleDES.Create().Key;
+        public static byte[] TDESIV => TripleDES.Create().IV;
     }
 }

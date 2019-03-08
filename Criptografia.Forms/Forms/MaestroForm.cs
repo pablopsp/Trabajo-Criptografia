@@ -21,7 +21,7 @@ namespace Criptografia.Maestro
             // LblClavePriValue
             // 
             LblClavePriValue.AutoSize = true;
-            LblClavePriValue.Location = new Point(357, 144);
+            LblClavePriValue.Location = new Point(320, 144);
             LblClavePriValue.Name = "LblClavePriValue";
             LblClavePriValue.Size = new Size(0, 13);
             LblClavePriValue.TabIndex = 13;
@@ -30,7 +30,7 @@ namespace Criptografia.Maestro
             // LblClavePublicValue
             // 
             LblClavePublicValue.AutoSize = true;
-            LblClavePublicValue.Location = new Point(357, 118);
+            LblClavePublicValue.Location = new Point(320, 118);
             LblClavePublicValue.Name = "LblClavePublicValue";
             LblClavePublicValue.Size = new Size(0, 13);
             LblClavePublicValue.TabIndex = 12;
@@ -63,7 +63,7 @@ namespace Criptografia.Maestro
         }
         private void GenerateRSA()
         {
-            string[] keys = Services.Crypt.RSAService.GeneratePrivateAndPublicKey();
+            string[] keys = RSAService.GeneratePrivateAndPublicKey();
             LblClavePublicValue.Text = keys[0];
             LblClavePriValue.Text = keys[1];
             EsclavoForm.LblClavePublicValue.Text = keys[0];
@@ -116,12 +116,53 @@ namespace Criptografia.Maestro
 
         private void BtnGenerateTDES_Click(object sender, EventArgs e)
         {
-            string TDESKey = Encoding.UTF8.GetString(TDESService.GenerateKey());
-            LblClaveTDES.Text = TDESKey;
+            if (string.IsNullOrWhiteSpace(LblClaveTDES.Text))
+                LblClaveTDES.Text = Encoding.Default.GetString(TDESService.TDESKey);
+            else
+            {
+                DialogResult dg = MessageBox.Show("¿Esta segur@ de que desea generar otra clave TDES?",
+                                                    "Comprobación de generación TDES",
+                                                    MessageBoxButtons.YesNo);
+                if (dg == DialogResult.Yes)
+                    LblClaveTDES.Text = Encoding.Default.GetString(TDESService.TDESKey);
+            }
         }
         private void LblClaveTDES_Click(object sender, EventArgs e) => MessageBox.Show(LblClaveTDES.Text,
             "Valor clave TDES",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
+
+        private void BtnEncryptTDES_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(LblClaveTDES.Text) || string.IsNullOrWhiteSpace(LblClavePublicaEsclavo.Text))
+                MessageBox.Show("No puede encriptar la clave TDES si no ha importado la clave publica RSA del esclavo ni generado la clave TDES.",
+                                "Cannot encrypt TDES key",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            
+            else
+            {
+                byte[] encryptedTDES = RSAService.Encrypt(LblClaveTDES.Text, LblClavePublicaEsclavo.Text);
+                LblTDESEncrypted.Text = Encoding.Default.GetString(encryptedTDES);
+            }
+        }
+        private void LblTDESEncrypted_Click(object sender, EventArgs e) => MessageBox.Show(LblTDESEncrypted.Text,
+            "Valor clave TDES Encriptada",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        private void BtnExportTDESEncrypted_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(LblTDESEncrypted.Text))
+                Services.XML.Export.ExportEncryptedTDES(Encoding.Default.GetBytes(LblTDESEncrypted.Text),
+                                                        Environment.GetFolderPath(
+                                                        Environment.SpecialFolder.Desktop) + @"\tdesencriptado.xml");
+            else
+                MessageBox.Show("Primero debe generar la clave TDES encriptada.",
+                                "Wrong way",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            
+        }
     }
 }

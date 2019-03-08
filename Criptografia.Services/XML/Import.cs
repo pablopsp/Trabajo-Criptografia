@@ -8,9 +8,8 @@ namespace Criptografia.Services.XML
 {
     public class Import
     {
-        public static object ImportPublicRSA(string path)
-        {
-            return XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "clavepublica");
-        }
+        public static object ImportPublicRSA(string path) => XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "clavepublica");
+
+        public static object ImportEncryptedTDES(string path) => XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "tdes");
     }
 }

@@ -89,7 +89,7 @@
             // 
             this.LblPrivClave.AutoSize = true;
             this.LblPrivClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPrivClave.Location = new System.Drawing.Point(229, 144);
+            this.LblPrivClave.Location = new System.Drawing.Point(208, 144);
             this.LblPrivClave.Name = "LblPrivClave";
             this.LblPrivClave.Size = new System.Drawing.Size(110, 16);
             this.LblPrivClave.TabIndex = 9;
@@ -99,7 +99,7 @@
             // 
             this.LblPublicClave.AutoSize = true;
             this.LblPublicClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPublicClave.Location = new System.Drawing.Point(230, 118);
+            this.LblPublicClave.Location = new System.Drawing.Point(208, 118);
             this.LblPublicClave.Name = "LblPublicClave";
             this.LblPublicClave.Size = new System.Drawing.Size(108, 16);
             this.LblPublicClave.TabIndex = 8;
@@ -123,15 +123,16 @@
             this.BtnImportTDES.TabIndex = 15;
             this.BtnImportTDES.Text = "Importar clave TDES de fichero XML";
             this.BtnImportTDES.UseVisualStyleBackColor = true;
+            this.BtnImportTDES.Click += new System.EventHandler(this.BtnImportTDES_Click);
             // 
             // LblTDESEncrypted
             // 
             this.LblTDESEncrypted.AutoSize = true;
-            this.LblTDESEncrypted.Location = new System.Drawing.Point(248, 292);
+            this.LblTDESEncrypted.Location = new System.Drawing.Point(193, 292);
             this.LblTDESEncrypted.Name = "LblTDESEncrypted";
-            this.LblTDESEncrypted.Size = new System.Drawing.Size(35, 13);
+            this.LblTDESEncrypted.Size = new System.Drawing.Size(0, 13);
             this.LblTDESEncrypted.TabIndex = 16;
-            this.LblTDESEncrypted.Text = "label1";
+            this.LblTDESEncrypted.Click += new System.EventHandler(this.LblTDESEncrypted_Click);
             // 
             // BtnDecryptTDES
             // 
@@ -141,15 +142,15 @@
             this.BtnDecryptTDES.TabIndex = 17;
             this.BtnDecryptTDES.Text = "Desencriptar clave TDES";
             this.BtnDecryptTDES.UseVisualStyleBackColor = true;
+            this.BtnDecryptTDES.Click += new System.EventHandler(this.BtnDecryptTDES_Click);
             // 
             // LblTDESDecrypted
             // 
             this.LblTDESDecrypted.AutoSize = true;
-            this.LblTDESDecrypted.Location = new System.Drawing.Point(248, 355);
+            this.LblTDESDecrypted.Location = new System.Drawing.Point(193, 355);
             this.LblTDESDecrypted.Name = "LblTDESDecrypted";
-            this.LblTDESDecrypted.Size = new System.Drawing.Size(35, 13);
+            this.LblTDESDecrypted.Size = new System.Drawing.Size(0, 13);
             this.LblTDESDecrypted.TabIndex = 18;
-            this.LblTDESDecrypted.Text = "label1";
             // 
             // MssgToEncrypt
             // 

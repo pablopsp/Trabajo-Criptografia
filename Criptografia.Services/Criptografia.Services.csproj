@@ -50,6 +50,7 @@
     <Compile Include="Crypt\RSAService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Crypt\TDESService.cs" />
+    <Compile Include="Util\ByteTransform.cs" />
     <Compile Include="XML\Export.cs" />
     <Compile Include="XML\Import.cs" />
   </ItemGroup>

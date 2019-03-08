@@ -89,7 +89,7 @@
             // 
             this.LblPublicClave.AutoSize = true;
             this.LblPublicClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPublicClave.Location = new System.Drawing.Point(230, 118);
+            this.LblPublicClave.Location = new System.Drawing.Point(208, 118);
             this.LblPublicClave.Name = "LblPublicClave";
             this.LblPublicClave.Size = new System.Drawing.Size(108, 16);
             this.LblPublicClave.TabIndex = 4;
@@ -99,7 +99,7 @@
             // 
             this.LblPrivClave.AutoSize = true;
             this.LblPrivClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPrivClave.Location = new System.Drawing.Point(229, 144);
+            this.LblPrivClave.Location = new System.Drawing.Point(207, 144);
             this.LblPrivClave.Name = "LblPrivClave";
             this.LblPrivClave.Size = new System.Drawing.Size(110, 16);
             this.LblPrivClave.TabIndex = 5;
@@ -118,7 +118,7 @@
             // LblClavePublicaEsclavo
             // 
             this.LblClavePublicaEsclavo.AutoSize = true;
-            this.LblClavePublicaEsclavo.Location = new System.Drawing.Point(277, 220);
+            this.LblClavePublicaEsclavo.Location = new System.Drawing.Point(218, 220);
             this.LblClavePublicaEsclavo.Name = "LblClavePublicaEsclavo";
             this.LblClavePublicaEsclavo.Size = new System.Drawing.Size(0, 13);
             this.LblClavePublicaEsclavo.TabIndex = 9;
@@ -127,7 +127,7 @@
             // LblClaveTDES
             // 
             this.LblClaveTDES.AutoSize = true;
-            this.LblClaveTDES.Location = new System.Drawing.Point(277, 282);
+            this.LblClaveTDES.Location = new System.Drawing.Point(218, 282);
             this.LblClaveTDES.Name = "LblClaveTDES";
             this.LblClaveTDES.Size = new System.Drawing.Size(0, 13);
             this.LblClaveTDES.TabIndex = 11;
@@ -151,24 +151,26 @@
             this.BtnEncryptTDES.TabIndex = 14;
             this.BtnEncryptTDES.Text = "Encriptar clave TDES con RSA y clave pública esclavo";
             this.BtnEncryptTDES.UseVisualStyleBackColor = true;
+            this.BtnEncryptTDES.Click += new System.EventHandler(this.BtnEncryptTDES_Click);
             // 
             // LblTDESEncrypted
             // 
             this.LblTDESEncrypted.AutoSize = true;
-            this.LblTDESEncrypted.Location = new System.Drawing.Point(277, 360);
+            this.LblTDESEncrypted.Location = new System.Drawing.Point(347, 360);
             this.LblTDESEncrypted.Name = "LblTDESEncrypted";
-            this.LblTDESEncrypted.Size = new System.Drawing.Size(35, 13);
+            this.LblTDESEncrypted.Size = new System.Drawing.Size(0, 13);
             this.LblTDESEncrypted.TabIndex = 16;
-            this.LblTDESEncrypted.Text = "label3";
+            this.LblTDESEncrypted.Click += new System.EventHandler(this.LblTDESEncrypted_Click);
             // 
             // BtnExportTDESEncrypted
             // 
-            this.BtnExportTDESEncrypted.Location = new System.Drawing.Point(369, 337);
+            this.BtnExportTDESEncrypted.Location = new System.Drawing.Point(258, 337);
             this.BtnExportTDESEncrypted.Name = "BtnExportTDESEncrypted";
             this.BtnExportTDESEncrypted.Size = new System.Drawing.Size(81, 58);
             this.BtnExportTDESEncrypted.TabIndex = 17;
             this.BtnExportTDESEncrypted.Text = "Exportar a XML TDES Encriptada";
             this.BtnExportTDESEncrypted.UseVisualStyleBackColor = true;
+            this.BtnExportTDESEncrypted.Click += new System.EventHandler(this.BtnExportTDESEncrypted_Click);
             // 
             // BtnImportMssg
             // 
@@ -182,7 +184,7 @@
             // LblEncryptedMssg
             // 
             this.LblEncryptedMssg.AutoSize = true;
-            this.LblEncryptedMssg.Location = new System.Drawing.Point(277, 449);
+            this.LblEncryptedMssg.Location = new System.Drawing.Point(252, 449);
             this.LblEncryptedMssg.Name = "LblEncryptedMssg";
             this.LblEncryptedMssg.Size = new System.Drawing.Size(35, 13);
             this.LblEncryptedMssg.TabIndex = 20;
@@ -200,7 +202,7 @@
             // LblDecryptedMssg
             // 
             this.LblDecryptedMssg.AutoSize = true;
-            this.LblDecryptedMssg.Location = new System.Drawing.Point(277, 521);
+            this.LblDecryptedMssg.Location = new System.Drawing.Point(252, 521);
             this.LblDecryptedMssg.Name = "LblDecryptedMssg";
             this.LblDecryptedMssg.Size = new System.Drawing.Size(35, 13);
             this.LblDecryptedMssg.TabIndex = 22;
