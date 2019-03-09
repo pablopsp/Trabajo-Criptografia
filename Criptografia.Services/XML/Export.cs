@@ -19,14 +19,37 @@ namespace Criptografia.Services.XML
             SimpleXMLCreate.FlatXML(dict, filePathWithName);
         }
 
-        public static void ExportEncryptedTDES(byte[] encryptedTDES, string filePathWithName)
+        public static void ExportEncryptedTDES(string encryptedTDES, string filePathWithName)
         {
-            List<byte> list = encryptedTDES.OfType<byte>().ToList();
+            byte[] bytesTDES = Encoding.Default.GetBytes(encryptedTDES);
+            List<byte> list = bytesTDES.OfType<byte>().ToList();
             string complete = null;
 
             for (int i = 0; i < list.Count; i++)
             {
                 if (i == list.Count-1)
+                    complete += list[i];
+                else
+                    complete += list[i] + ",";
+            }
+
+            IDictionary<string, string> dict = new Dictionary<string, string>
+            {
+                { "tdes", complete }
+            };
+
+            SimpleXMLCreate.FlatXML(dict, filePathWithName);
+        }
+
+        public static void ExportEncryptedMessage(string msgEncrypted, string filePathWithName)
+        {
+            byte[] bytesTDES = Encoding.Default.GetBytes(msgEncrypted);
+            List<byte> list = bytesTDES.OfType<byte>().ToList();
+            string complete = null;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (i == list.Count - 1)
                     complete += list[i];
                 else
                     complete += list[i] + ",";

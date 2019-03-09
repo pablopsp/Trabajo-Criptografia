@@ -180,15 +180,16 @@
             this.BtnImportMssg.TabIndex = 18;
             this.BtnImportMssg.Text = "Importar mensaje desde XML";
             this.BtnImportMssg.UseVisualStyleBackColor = true;
+            this.BtnImportMssg.Click += new System.EventHandler(this.BtnImportMssg_Click);
             // 
             // LblEncryptedMssg
             // 
             this.LblEncryptedMssg.AutoSize = true;
             this.LblEncryptedMssg.Location = new System.Drawing.Point(252, 449);
             this.LblEncryptedMssg.Name = "LblEncryptedMssg";
-            this.LblEncryptedMssg.Size = new System.Drawing.Size(35, 13);
+            this.LblEncryptedMssg.Size = new System.Drawing.Size(0, 13);
             this.LblEncryptedMssg.TabIndex = 20;
-            this.LblEncryptedMssg.Text = "label2";
+            this.LblEncryptedMssg.Click += new System.EventHandler(this.LblEncryptedMssg_Click);
             // 
             // BtnDecryptMssg
             // 
@@ -198,15 +199,16 @@
             this.BtnDecryptMssg.TabIndex = 21;
             this.BtnDecryptMssg.Text = "Desencriptar texto con TDES y clave TDES creada";
             this.BtnDecryptMssg.UseVisualStyleBackColor = true;
+            this.BtnDecryptMssg.Click += new System.EventHandler(this.BtnDecryptMssg_Click);
             // 
             // LblDecryptedMssg
             // 
             this.LblDecryptedMssg.AutoSize = true;
             this.LblDecryptedMssg.Location = new System.Drawing.Point(252, 521);
             this.LblDecryptedMssg.Name = "LblDecryptedMssg";
-            this.LblDecryptedMssg.Size = new System.Drawing.Size(35, 13);
+            this.LblDecryptedMssg.Size = new System.Drawing.Size(0, 13);
             this.LblDecryptedMssg.TabIndex = 22;
-            this.LblDecryptedMssg.Text = "label2";
+            this.LblDecryptedMssg.Click += new System.EventHandler(this.LblDecryptedMssg_Click);
             // 
             // MaestroForm
             // 

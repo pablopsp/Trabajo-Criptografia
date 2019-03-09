@@ -137,8 +137,8 @@ namespace Criptografia.Maestro.Forms
 
         private void BtnDecryptTDES_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(LblTDESEncrypted.Text))
-                MessageBox.Show("Debe haber importado primero la clave TDES Encriptada.",
+            if (string.IsNullOrWhiteSpace(LblTDESEncrypted.Text) || string.IsNullOrWhiteSpace(LblClavePriValue.Text))
+                MessageBox.Show("Debe haber importado primero la clave TDES Encriptada y haber generado una clave publica.",
                                     "Wrong way",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
@@ -147,6 +147,42 @@ namespace Criptografia.Maestro.Forms
                 byte[] decriptedKey = Services.Crypt.RSAService.Decrypt(Encoding.Default.GetBytes(LblTDESEncrypted.Text), LblClavePriValue.Text);
                 LblTDESDecrypted.Text = Encoding.Default.GetString(decriptedKey);
             }
+        }
+        private void LblTDESDecrypted_Click(object sender, EventArgs e) => MessageBox.Show(LblTDESDecrypted.Text,
+            "Valor TDES Desencriptada",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        private void BtnMssgEncrypt_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(LblTDESDecrypted.Text))
+                MessageBox.Show("Debe haber desencriptado la clave TDES primero.",
+                                        "Wrong way",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+            else
+            {
+                byte[] msgEncrypted = Services.Crypt.TDESService.Encrypt(MssgToEncrypt.Text, Encoding.Default.GetBytes(LblTDESDecrypted.Text));
+                LblMssgEncrypted.Text = Encoding.Default.GetString(msgEncrypted);
+            }
+        }
+        private void LblMssgEncrypted_Click(object sender, EventArgs e) => MessageBox.Show(LblMssgEncrypted.Text,
+            "Valor clave privada",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        private void BtnExportToXML_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(LblMssgEncrypted.Text))
+                Services.XML.Export.ExportEncryptedMessage(LblMssgEncrypted.Text,
+                                                    Environment.GetFolderPath(
+                                                        Environment.SpecialFolder.Desktop) + @"\textoencriptado.xml");
+
+            else
+                MessageBox.Show("Debe haber generado el mensaje encriptado primero.",
+                                "Error to export",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
         }
     }
 }

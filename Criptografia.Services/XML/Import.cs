@@ -11,5 +11,7 @@ namespace Criptografia.Services.XML
         public static object ImportPublicRSA(string path) => XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "clavepublica");
 
         public static object ImportEncryptedTDES(string path) => XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "tdes");
+
+        public static object ImportEncryptedMssg(string path) => XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "textoe");
     }
 }

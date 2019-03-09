@@ -151,6 +151,7 @@
             this.LblTDESDecrypted.Name = "LblTDESDecrypted";
             this.LblTDESDecrypted.Size = new System.Drawing.Size(0, 13);
             this.LblTDESDecrypted.TabIndex = 18;
+            this.LblTDESDecrypted.Click += new System.EventHandler(this.LblTDESDecrypted_Click);
             // 
             // MssgToEncrypt
             // 
@@ -168,26 +169,28 @@
             this.BtnMssgEncrypt.Name = "BtnMssgEncrypt";
             this.BtnMssgEncrypt.Size = new System.Drawing.Size(314, 32);
             this.BtnMssgEncrypt.TabIndex = 20;
-            this.BtnMssgEncrypt.Text = "Encriptar texto TDES y claves TDES desencriptadas";
+            this.BtnMssgEncrypt.Text = "Encriptar texto con clave TDES";
             this.BtnMssgEncrypt.UseVisualStyleBackColor = true;
+            this.BtnMssgEncrypt.Click += new System.EventHandler(this.BtnMssgEncrypt_Click);
             // 
             // LblMssgEncrypted
             // 
             this.LblMssgEncrypted.AutoSize = true;
-            this.LblMssgEncrypted.Location = new System.Drawing.Point(229, 500);
+            this.LblMssgEncrypted.Location = new System.Drawing.Point(176, 500);
             this.LblMssgEncrypted.Name = "LblMssgEncrypted";
-            this.LblMssgEncrypted.Size = new System.Drawing.Size(35, 13);
+            this.LblMssgEncrypted.Size = new System.Drawing.Size(0, 13);
             this.LblMssgEncrypted.TabIndex = 21;
-            this.LblMssgEncrypted.Text = "label1";
+            this.LblMssgEncrypted.Click += new System.EventHandler(this.LblMssgEncrypted_Click);
             // 
             // BtnExportToXML
             // 
-            this.BtnExportToXML.Location = new System.Drawing.Point(171, 529);
+            this.BtnExportToXML.Location = new System.Drawing.Point(170, 536);
             this.BtnExportToXML.Name = "BtnExportToXML";
             this.BtnExportToXML.Size = new System.Drawing.Size(157, 34);
             this.BtnExportToXML.TabIndex = 22;
             this.BtnExportToXML.Text = "Exporta mensaje a XML";
             this.BtnExportToXML.UseVisualStyleBackColor = true;
+            this.BtnExportToXML.Click += new System.EventHandler(this.BtnExportToXML_Click);
             // 
             // EsclavoForm
             // 
