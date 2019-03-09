@@ -188,7 +188,7 @@ namespace Criptografia.Maestro
                 }
                 else
                 {
-                    string msgEncrypted = Services.XML.Import.ImportEncryptedTDES(fileDialog.FileName).ToString();
+                    string msgEncrypted = Services.XML.Import.ImportEncryptedMssg(fileDialog.FileName).ToString();
                     byte[] arrByteTDES = Services.Util.ByteTransform.GetByteArrayOnString(msgEncrypted);
                     LblEncryptedMssg.Text = Encoding.Default.GetString(arrByteTDES);
                 }

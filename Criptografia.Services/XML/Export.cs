@@ -57,7 +57,7 @@ namespace Criptografia.Services.XML
 
             IDictionary<string, string> dict = new Dictionary<string, string>
             {
-                { "tdes", complete }
+                { "textoe", complete }
             };
 
             SimpleXMLCreate.FlatXML(dict, filePathWithName);
