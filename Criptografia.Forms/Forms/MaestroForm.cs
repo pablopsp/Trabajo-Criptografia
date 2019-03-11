@@ -212,7 +212,7 @@ namespace Criptografia.Maestro
                 LblDecryptedMssg.Text = decryptedText;
             }
         }
-        private void LblDecryptedMssg_Click(object sender, EventArgs e) => MessageBox.Show(LblEncryptedMssg.Text,
+        private void LblDecryptedMssg_Click(object sender, EventArgs e) => MessageBox.Show(LblDecryptedMssg.Text,
             "Mesnaje desencriptado",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
