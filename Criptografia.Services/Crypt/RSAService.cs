@@ -1,5 +1,5 @@
-﻿using System.Security.Cryptography;
-using System;
+﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Criptografia.Services.Crypt
@@ -26,7 +26,16 @@ namespace Criptografia.Services.Crypt
 
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(RSAPublicKey);
-            byte[] msgEncrypted = rsa.Encrypt(byteMessage, false);
+
+            byte[] msgEncrypted;
+            try
+            {
+                msgEncrypted = rsa.Encrypt(byteMessage, false);
+            }
+            catch (CryptographicException ex)
+            {
+                throw ex;
+            }
 
             return msgEncrypted;
         }
@@ -35,8 +44,16 @@ namespace Criptografia.Services.Crypt
         {
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(RSAPrivateKey);
-            byte[] msgDecrypted = rsa.Decrypt(encryptedMessage, false);
 
+            byte[] msgDecrypted;
+            try
+            {
+                msgDecrypted = rsa.Decrypt(encryptedMessage, false);
+            }
+            catch(CryptographicException ex)
+            {
+                throw ex;
+            }
             return msgDecrypted;
         }
     }

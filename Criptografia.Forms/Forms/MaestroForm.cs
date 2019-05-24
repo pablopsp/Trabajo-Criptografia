@@ -102,8 +102,18 @@ namespace Criptografia.Maestro
                 }
                 else
                 {
-                    string rsa = Services.XML.Import.ImportPublicRSA(fileDialog.FileName).ToString();
-                    LblClavePublicaEsclavo.Text = rsa;
+                    if (Path.GetFileName(fileDialog.FileName) == "cp_esclavo.xml")
+                    {
+                        string rsa = Services.XML.Import.ImportDataFromNode(fileDialog.FileName, "clavepublica").ToString();
+                        LblClavePublicaEsclavo.Text = rsa;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El xml se tiene que llamar 'cp_exclavo.xml'",
+                                        "XML erroneo",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -188,9 +198,19 @@ namespace Criptografia.Maestro
                 }
                 else
                 {
-                    string msgEncrypted = Services.XML.Import.ImportEncryptedMssg(fileDialog.FileName).ToString();
-                    byte[] arrByteTDES = Services.Util.ByteTransform.GetByteArrayOnString(msgEncrypted);
-                    LblEncryptedMssg.Text = Encoding.Default.GetString(arrByteTDES);
+                    if (Path.GetFileName(fileDialog.FileName) == "textoencriptado.xml")
+                    {
+                        string msgEncrypted = Services.XML.Import.ImportDataFromNode(fileDialog.FileName, "textoe").ToString();
+                        byte[] arrByteTDES = Services.Util.ByteTransform.GetByteArrayOnString(msgEncrypted);
+                        LblEncryptedMssg.Text = Encoding.Default.GetString(arrByteTDES);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El xml se tiene que llamar 'textoencriptado.xml'",
+                                        "XML erroneo",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
                 }
             }
         }

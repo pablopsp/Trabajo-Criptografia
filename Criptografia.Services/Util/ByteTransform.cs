@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Criptografia.Services.Util
 {
     public class ByteTransform
     {
+        /// <summary>
+        /// Devuelve un array de bytes que esta en un string
+        /// </summary>
+        /// <param name="arrayOfBytes"></param>
+        /// <returns></returns>
         public static byte[] GetByteArrayOnString(string arrayOfBytes)
         {
             string[] splitedString = arrayOfBytes.Split(new char[] { ',' });
@@ -25,6 +27,12 @@ namespace Criptografia.Services.Util
             return reversedByteArray;
         }
 
+        /// <summary>
+        /// Agrega un byte a un array de bytes
+        /// </summary>
+        /// <param name="bArray"></param>
+        /// <param name="newByte"></param>
+        /// <returns></returns>
         private static byte[] AddByteToArray(byte[] bArray, byte newByte)
         {
             byte[] newArr = new byte[bArray.Length + 1];
@@ -33,6 +41,11 @@ namespace Criptografia.Services.Util
             return newArr;
         }
 
+        /// <summary>
+        /// Borra todos los ceros extras de bytes
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
         private static byte[] DeleteZerosFromByteArray(byte[] array)
         {
             int lastIndex = Array.FindLastIndex(array, b => b != 0);

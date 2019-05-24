@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Criptografia.Services.XML
+﻿namespace Criptografia.Services.XML
 {
     public class Import
     {
-        public static object ImportPublicRSA(string path) => XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "clavepublica");
-
-        public static object ImportEncryptedTDES(string path) => XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "tdes");
-
-        public static object ImportEncryptedMssg(string path) => XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, "textoe");
+        /// <summary>
+        /// Importa el dato que contiene un nodo de un xml
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="nodeName"></param>
+        /// <returns></returns>
+        public static object ImportDataFromNode(string path, string nodeName) => 
+                             XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, nodeName);
     }
 }

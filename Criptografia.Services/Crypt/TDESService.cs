@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Criptografia.Services.Crypt
 {
@@ -31,7 +26,7 @@ namespace Criptografia.Services.Crypt
             }
             catch(CryptographicException ex)
             {
-                return null;
+                throw ex;
             }
                        
         }
@@ -55,7 +50,7 @@ namespace Criptografia.Services.Crypt
             }
             catch(CryptographicException ex)
             {
-                return null;
+                throw ex;
             }            
         }
     }

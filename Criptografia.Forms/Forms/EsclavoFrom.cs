@@ -1,6 +1,4 @@
-﻿using Criptografia.Services;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -124,9 +122,19 @@ namespace Criptografia.Maestro.Forms
                 }
                 else
                 {
-                    string rsa = Services.XML.Import.ImportEncryptedTDES(fileDialog.FileName).ToString();
-                    byte[] arrByteTDES = Services.Util.ByteTransform.GetByteArrayOnString(rsa);
-                    LblTDESEncrypted.Text = Encoding.Default.GetString(arrByteTDES);
+                    if (Path.GetFileName(fileDialog.FileName) == "tdesencriptado.xml")
+                    {
+                        string rsa = Services.XML.Import.ImportDataFromNode(fileDialog.FileName, "tdes").ToString();
+                        byte[] arrByteTDES = Services.Util.ByteTransform.GetByteArrayOnString(rsa);
+                        LblTDESEncrypted.Text = Encoding.Default.GetString(arrByteTDES);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El xml se tiene que llamar 'tdesencriptado.xml'",
+                                        "XML erroneo",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
                 }
             }
         }
