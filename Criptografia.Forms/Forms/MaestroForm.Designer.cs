@@ -118,7 +118,7 @@
             // LblClavePublicaEsclavo
             // 
             this.LblClavePublicaEsclavo.AutoSize = true;
-            this.LblClavePublicaEsclavo.Location = new System.Drawing.Point(218, 220);
+            this.LblClavePublicaEsclavo.Location = new System.Drawing.Point(203, 220);
             this.LblClavePublicaEsclavo.Name = "LblClavePublicaEsclavo";
             this.LblClavePublicaEsclavo.Size = new System.Drawing.Size(0, 13);
             this.LblClavePublicaEsclavo.TabIndex = 9;
@@ -127,7 +127,7 @@
             // LblClaveTDES
             // 
             this.LblClaveTDES.AutoSize = true;
-            this.LblClaveTDES.Location = new System.Drawing.Point(218, 282);
+            this.LblClaveTDES.Location = new System.Drawing.Point(202, 280);
             this.LblClaveTDES.Name = "LblClaveTDES";
             this.LblClaveTDES.Size = new System.Drawing.Size(0, 13);
             this.LblClaveTDES.TabIndex = 11;
@@ -156,7 +156,7 @@
             // LblTDESEncrypted
             // 
             this.LblTDESEncrypted.AutoSize = true;
-            this.LblTDESEncrypted.Location = new System.Drawing.Point(347, 360);
+            this.LblTDESEncrypted.Location = new System.Drawing.Point(347, 342);
             this.LblTDESEncrypted.Name = "LblTDESEncrypted";
             this.LblTDESEncrypted.Size = new System.Drawing.Size(0, 13);
             this.LblTDESEncrypted.TabIndex = 16;
@@ -185,7 +185,7 @@
             // LblEncryptedMssg
             // 
             this.LblEncryptedMssg.AutoSize = true;
-            this.LblEncryptedMssg.Location = new System.Drawing.Point(252, 449);
+            this.LblEncryptedMssg.Location = new System.Drawing.Point(237, 449);
             this.LblEncryptedMssg.Name = "LblEncryptedMssg";
             this.LblEncryptedMssg.Size = new System.Drawing.Size(0, 13);
             this.LblEncryptedMssg.TabIndex = 20;
@@ -204,7 +204,7 @@
             // LblDecryptedMssg
             // 
             this.LblDecryptedMssg.AutoSize = true;
-            this.LblDecryptedMssg.Location = new System.Drawing.Point(252, 521);
+            this.LblDecryptedMssg.Location = new System.Drawing.Point(241, 521);
             this.LblDecryptedMssg.Name = "LblDecryptedMssg";
             this.LblDecryptedMssg.Size = new System.Drawing.Size(0, 13);
             this.LblDecryptedMssg.TabIndex = 22;

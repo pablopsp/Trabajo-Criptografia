@@ -1,22 +1,55 @@
-﻿using System.Security.Cryptography;
+﻿using Criptografia.Services.Util;
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Criptografia.Services.Crypt
 {
     public class TDESService
     {
-        public static byte[] TDESKey => TripleDES.Create().Key;
+        private static byte[] TDESKey /*= new byte[] { 0x33, 0x7a, 0x31, 0xd1, 0xf8, 0x6f, 0x9f, 0xdc, 0x7c, 0xe1, 0x01, 0xf4, 0xb0, 0xe5, 0x0c, 0x86, 0x1a, 0x64
+            , 0xfe , 0xa8 , 0xdf , 0xd6 , 0x55 , 0xdd }*/;
+        private static byte[] TDESIv;
+        public static IEnumerable<string> Keys = TripleKeys();
+
+        private static IEnumerable<string> TripleKeys()
+        {
+            //TDESIv = TripleDES.Create().IV;
+            IEnumerable<string> result;
+        ReDoit:
+            if (TDESKey != null)
+            {               
+                string key = ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(TDESKey));
+
+                result = new List<string>()
+                {
+                    key.Substring(0, 16),
+                    key.Substring(16, 16),
+                    key.Substring(32, 16)
+                };
+
+            }
+            else
+            {
+                TDESKey = TripleDES.Create().Key;
+                TDESIv = TripleDES.Create().IV;
+                goto ReDoit;
+            }
+
+            return result;
+        }
 
         public static byte[] Encrypt(string textToEncrypt, byte[] keyTDES)
         {
             try
             {
                 byte[] textBytes = Encoding.Default.GetBytes(textToEncrypt);
-                MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
                 TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider
                 {
-                    Key = md5.ComputeHash(keyTDES),
-                    Mode = CipherMode.ECB,
+                    Key = keyTDES,
+                    IV = TDESIv,
+                    Mode = CipherMode.CBC,
                     Padding = PaddingMode.PKCS7
                 };
                 ICryptoTransform cryptoTransform = tdes.CreateEncryptor();
@@ -24,34 +57,34 @@ namespace Criptografia.Services.Crypt
 
                 return encryptedText;
             }
-            catch(CryptographicException ex)
+            catch (CryptographicException ex)
             {
                 throw ex;
             }
-                       
+
         }
 
-        public static string Decrypt(string textToDecrypt, byte[] keyTDES)
+        public static byte[] Decrypt(string textToDecrypt, byte[] keyTDES)
         {
             try
             {
-                byte[] textBytes = Encoding.Default.GetBytes(textToDecrypt);
-                MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+                byte[] textBytes = ByteTransform.HexStringToByteArray(textToDecrypt);
                 TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider
                 {
-                    Key = md5.ComputeHash(keyTDES),
-                    Mode = CipherMode.ECB,
+                    Key = keyTDES,
+                    IV = TDESIv,
+                    Mode = CipherMode.CBC,
                     Padding = PaddingMode.PKCS7
                 };
                 ICryptoTransform cryptoTransform = tdes.CreateDecryptor();
                 byte[] decryptedText = cryptoTransform.TransformFinalBlock(textBytes, 0, textBytes.Length);
-                
-                return Encoding.Default.GetString(decryptedText);
+
+                return decryptedText;
             }
-            catch(CryptographicException ex)
+            catch (CryptographicException ex)
             {
                 throw ex;
-            }            
+            }
         }
     }
 }

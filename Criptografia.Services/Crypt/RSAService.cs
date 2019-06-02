@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Criptografia.Services.Util;
+using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace Criptografia.Services.Crypt
 {
@@ -9,7 +9,7 @@ namespace Criptografia.Services.Crypt
         public static string[] GeneratePrivateAndPublicKey()
         {
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(512)
-            {
+            { 
                 PersistKeyInCsp = false
             };
 
@@ -20,24 +20,25 @@ namespace Criptografia.Services.Crypt
             };
         }
 
-        public static byte[] Encrypt(string messageToEncrypt, string RSAPublicKey)
+        public static IEnumerable<byte[]> EncryptTDES(IEnumerable<string> keys, string RSAPublicKey)
         {
-            byte[] byteMessage = Encoding.Default.GetBytes(messageToEncrypt);
-
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(RSAPublicKey);
 
-            byte[] msgEncrypted;
+            List<byte[]> encryptedKeys = new List<byte[]>();
             try
             {
-                msgEncrypted = rsa.Encrypt(byteMessage, false);
+                foreach (var item in keys)
+                {
+                    encryptedKeys.Add(rsa.Encrypt(ByteTransform.HexStringToByteArray(item), false));
+                }
             }
             catch (CryptographicException ex)
             {
                 throw ex;
             }
 
-            return msgEncrypted;
+            return encryptedKeys;
         }
 
         public static byte[] Decrypt(byte[] encryptedMessage, string RSAPrivateKey)

@@ -128,7 +128,7 @@
             // LblTDESEncrypted
             // 
             this.LblTDESEncrypted.AutoSize = true;
-            this.LblTDESEncrypted.Location = new System.Drawing.Point(193, 292);
+            this.LblTDESEncrypted.Location = new System.Drawing.Point(187, 282);
             this.LblTDESEncrypted.Name = "LblTDESEncrypted";
             this.LblTDESEncrypted.Size = new System.Drawing.Size(0, 13);
             this.LblTDESEncrypted.TabIndex = 16;
@@ -147,7 +147,7 @@
             // LblTDESDecrypted
             // 
             this.LblTDESDecrypted.AutoSize = true;
-            this.LblTDESDecrypted.Location = new System.Drawing.Point(193, 355);
+            this.LblTDESDecrypted.Location = new System.Drawing.Point(189, 355);
             this.LblTDESDecrypted.Name = "LblTDESDecrypted";
             this.LblTDESDecrypted.Size = new System.Drawing.Size(0, 13);
             this.LblTDESDecrypted.TabIndex = 18;
@@ -176,7 +176,7 @@
             // LblMssgEncrypted
             // 
             this.LblMssgEncrypted.AutoSize = true;
-            this.LblMssgEncrypted.Location = new System.Drawing.Point(176, 500);
+            this.LblMssgEncrypted.Location = new System.Drawing.Point(166, 500);
             this.LblMssgEncrypted.Name = "LblMssgEncrypted";
             this.LblMssgEncrypted.Size = new System.Drawing.Size(0, 13);
             this.LblMssgEncrypted.TabIndex = 21;

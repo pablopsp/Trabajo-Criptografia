@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Criptografia.Services.Util;
+using Criptografia.Services.XML;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Criptografia.Maestro.Forms
@@ -74,7 +77,7 @@ namespace Criptografia.Maestro.Forms
             MaestroForm.LblClavePriValue.Text = keys[1];
         }
 
-        private void LblClavePublicValue_Click(object sender, EventArgs e) => MessageBox.Show(LblClavePublicValue.Text,
+        private void LblClavePublicValue_Click(object sender, EventArgs e) =>  MessageBox.Show(LblClavePublicValue.Text,
             "Valor clave publica",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
@@ -124,9 +127,11 @@ namespace Criptografia.Maestro.Forms
                 {
                     if (Path.GetFileName(fileDialog.FileName) == "tdesencriptado.xml")
                     {
-                        string rsa = Services.XML.Import.ImportDataFromNode(fileDialog.FileName, "tdes").ToString();
-                        byte[] arrByteTDES = Services.Util.ByteTransform.GetByteArrayOnString(rsa);
-                        LblTDESEncrypted.Text = Encoding.Default.GetString(arrByteTDES);
+                        string tdes1 = Import.ImportDataFromNode(fileDialog.FileName, "tdes1").ToString();
+                        string tdes2 = Import.ImportDataFromNode(fileDialog.FileName, "tdes2").ToString();
+                        string tdes3 = Import.ImportDataFromNode(fileDialog.FileName, "tdes3").ToString();
+                        LblTDESEncrypted.Text = tdes1 + Environment.NewLine + tdes2 + Environment.NewLine +
+                                                tdes3 + Environment.NewLine;
                     }
                     else
                     {
@@ -146,14 +151,23 @@ namespace Criptografia.Maestro.Forms
         private void BtnDecryptTDES_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(LblTDESEncrypted.Text) || string.IsNullOrWhiteSpace(LblClavePriValue.Text))
-                MessageBox.Show("Debe haber importado primero la clave TDES Encriptada y haber generado una clave publica.",
+                MessageBox.Show("Debe haber importado primero la clave TDES Encriptada y haber generado una clave privada.",
                                     "Wrong way",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
             else
             {
-                byte[] decriptedKey = Services.Crypt.RSAService.Decrypt(Encoding.Default.GetBytes(LblTDESEncrypted.Text), LblClavePriValue.Text);
-                LblTDESDecrypted.Text = Encoding.Default.GetString(decriptedKey);
+                string[] encryptedTDESKeys = LblTDESEncrypted.Text.Split(new[] { "\r\n" }, StringSplitOptions.None);
+
+                if (encryptedTDESKeys.Length > 3)
+                    encryptedTDESKeys = encryptedTDESKeys.AsEnumerable().Take(3).ToArray();
+
+                List<string> decryptedKeys = new List<string>();
+                foreach (string key in encryptedTDESKeys)
+                    decryptedKeys.Add(ByteTransform.DeleteSpacesFromHex(BitConverter.ToString
+                        (Services.Crypt.RSAService.Decrypt(ByteTransform.HexStringToByteArray(key), LblClavePriValue.Text))));
+
+                LblTDESDecrypted.Text = string.Join("", decryptedKeys.ToArray());
             }
         }
         private void LblTDESDecrypted_Click(object sender, EventArgs e) => MessageBox.Show(LblTDESDecrypted.Text,
@@ -169,9 +183,10 @@ namespace Criptografia.Maestro.Forms
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
             else
-            {
-                byte[] msgEncrypted = Services.Crypt.TDESService.Encrypt(MssgToEncrypt.Text, Encoding.Default.GetBytes(LblTDESDecrypted.Text));
-                LblMssgEncrypted.Text = Encoding.Default.GetString(msgEncrypted);
+            {            
+                byte[] msgEncrypted = Services.Crypt.TDESService.Encrypt(MssgToEncrypt.Text, 
+                                                                 ByteTransform.HexStringToByteArray(LblTDESDecrypted.Text));
+                LblMssgEncrypted.Text = ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(msgEncrypted));
             }
         }
         private void LblMssgEncrypted_Click(object sender, EventArgs e) => MessageBox.Show(LblMssgEncrypted.Text,
@@ -182,7 +197,7 @@ namespace Criptografia.Maestro.Forms
         private void BtnExportToXML_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(LblMssgEncrypted.Text))
-                Services.XML.Export.ExportEncryptedMessage(LblMssgEncrypted.Text,
+                Services.XML.Export.ExportHexStringToXML("textoe", LblMssgEncrypted.Text,
                                                     Environment.GetFolderPath(
                                                         Environment.SpecialFolder.Desktop) + @"\textoencriptado.xml");
 
