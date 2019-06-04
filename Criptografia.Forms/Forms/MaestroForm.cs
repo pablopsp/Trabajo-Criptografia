@@ -161,10 +161,13 @@ namespace Criptografia.Maestro
             
             else
             {
-                List<byte[]> encryptedTDES = RSAService. EncryptTDES(TDESService.Keys, LblClavePublicaEsclavo.Text).ToList();
+                var list = TDESService.Keys.ToList();
+                list.Add(ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(TDESService.TDESIv)));
+                List<byte[]> encryptedTDES = RSAService.EncryptTDES(list, LblClavePublicaEsclavo.Text).ToList();
                 LblTDESEncrypted.Text = ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(encryptedTDES[0])) + Environment.NewLine +
                                         ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(encryptedTDES[1])) + Environment.NewLine +
-                                        ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(encryptedTDES[2]));
+                                        ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(encryptedTDES[2])) + Environment.NewLine +
+                                        ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(encryptedTDES[3]));
             }
         }
         private void LblTDESEncrypted_Click(object sender, EventArgs e) => MessageBox.Show(LblTDESEncrypted.Text,
@@ -175,9 +178,7 @@ namespace Criptografia.Maestro
         private void BtnExportTDESEncrypted_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(LblTDESEncrypted.Text))
-                Services.XML.Export.ExportTDES(LblTDESEncrypted.Text,
-                                                        Environment.GetFolderPath(
-                                                        Environment.SpecialFolder.Desktop) + @"\tdesencriptado.xml");
+                Services.XML.Export.ExportTDES(LblTDESEncrypted.Text, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\tdesencriptado.xml");
             else
                 MessageBox.Show("Primero debe generar la clave TDES encriptada.",
                                 "Wrong way",

@@ -8,9 +8,8 @@ namespace Criptografia.Services.Crypt
 {
     public class TDESService
     {
-        private static byte[] TDESKey /*= new byte[] { 0x33, 0x7a, 0x31, 0xd1, 0xf8, 0x6f, 0x9f, 0xdc, 0x7c, 0xe1, 0x01, 0xf4, 0xb0, 0xe5, 0x0c, 0x86, 0x1a, 0x64
-            , 0xfe , 0xa8 , 0xdf , 0xd6 , 0x55 , 0xdd }*/;
-        private static byte[] TDESIv;
+        private static byte[] TDESKey;
+        public static byte[] TDESIv;
         public static IEnumerable<string> Keys = TripleKeys();
 
         private static IEnumerable<string> TripleKeys()
@@ -28,7 +27,6 @@ namespace Criptografia.Services.Crypt
                     key.Substring(16, 16),
                     key.Substring(32, 16)
                 };
-
             }
             else
             {

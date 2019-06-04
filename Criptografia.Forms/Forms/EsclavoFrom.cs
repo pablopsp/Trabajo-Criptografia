@@ -1,4 +1,5 @@
-﻿using Criptografia.Services.Util;
+﻿using Criptografia.Services.Crypt;
+using Criptografia.Services.Util;
 using Criptografia.Services.XML;
 using System;
 using System.Collections.Generic;
@@ -130,8 +131,9 @@ namespace Criptografia.Maestro.Forms
                         string tdes1 = Import.ImportDataFromNode(fileDialog.FileName, "tdes1").ToString();
                         string tdes2 = Import.ImportDataFromNode(fileDialog.FileName, "tdes2").ToString();
                         string tdes3 = Import.ImportDataFromNode(fileDialog.FileName, "tdes3").ToString();
+                        string iv = Import.ImportDataFromNode(fileDialog.FileName, "iv").ToString();
                         LblTDESEncrypted.Text = tdes1 + Environment.NewLine + tdes2 + Environment.NewLine +
-                                                tdes3 + Environment.NewLine;
+                                                tdes3 + Environment.NewLine + iv;
                     }
                     else
                     {
@@ -159,15 +161,22 @@ namespace Criptografia.Maestro.Forms
             {
                 string[] encryptedTDESKeys = LblTDESEncrypted.Text.Split(new[] { "\r\n" }, StringSplitOptions.None);
 
-                if (encryptedTDESKeys.Length > 3)
-                    encryptedTDESKeys = encryptedTDESKeys.AsEnumerable().Take(3).ToArray();
+                if (encryptedTDESKeys.Length > 4)
+                    encryptedTDESKeys = encryptedTDESKeys.AsEnumerable().ToArray();
 
                 List<string> decryptedKeys = new List<string>();
                 foreach (string key in encryptedTDESKeys)
-                    decryptedKeys.Add(ByteTransform.DeleteSpacesFromHex(BitConverter.ToString
-                        (Services.Crypt.RSAService.Decrypt(ByteTransform.HexStringToByteArray(key), LblClavePriValue.Text))));
+                {
+                    var hexKey = ByteTransform.HexStringToByteArray(key);
+                    var decrypted = RSAService.Decrypt(hexKey, LblClavePriValue.Text);
+                    var a = (ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(decrypted)));
+                    decryptedKeys.Add(a);
+                }
 
+                TDESService.TDESIv = ByteTransform.HexStringToByteArray(decryptedKeys[3]);
+                decryptedKeys.RemoveAt(3);
                 LblTDESDecrypted.Text = string.Join("", decryptedKeys.ToArray());
+                
             }
         }
         private void LblTDESDecrypted_Click(object sender, EventArgs e) => MessageBox.Show(LblTDESDecrypted.Text,

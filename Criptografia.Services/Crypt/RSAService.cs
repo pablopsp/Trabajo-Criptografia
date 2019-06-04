@@ -30,7 +30,7 @@ namespace Criptografia.Services.Crypt
             {
                 foreach (var item in keys)
                 {
-                    encryptedKeys.Add(rsa.Encrypt(ByteTransform.HexStringToByteArray(item), false));
+                    encryptedKeys.Add(rsa.Encrypt(ByteTransform.HexStringToByteArray(item), true));
                 }
             }
             catch (CryptographicException ex)
@@ -49,7 +49,7 @@ namespace Criptografia.Services.Crypt
             byte[] msgDecrypted;
             try
             {
-                msgDecrypted = rsa.Decrypt(encryptedMessage, false);
+                msgDecrypted = rsa.Decrypt(encryptedMessage, true);
             }
             catch(CryptographicException ex)
             {

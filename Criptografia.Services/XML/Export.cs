@@ -32,7 +32,8 @@ namespace Criptografia.Services.XML
             {
                 { "tdes1", keys[0] },
                 { "tdes2", keys[1] },
-                { "tdes3", keys[2] }
+                { "tdes3", keys[2] },
+                { "iv", keys[3] }
             };
 
             SimpleXMLCreate.FlatXML(values, filePathWithName);
