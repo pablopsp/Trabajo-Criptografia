@@ -1,6 +1,7 @@
 ﻿using Criptografia.Maestro.Forms;
 using Criptografia.Services.Crypt;
 using Criptografia.Services.Util;
+using Criptografia.Services.XML;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -77,7 +78,7 @@ namespace Criptografia.Maestro
         }
         private void GenerateRSA()
         {
-            string[] keys = Services.Crypt.RSAService.GeneratePrivateAndPublicKey();
+            string[] keys = RSAService.GeneratePrivateAndPublicKey();
             LblClavePublicValue.Text = keys[0];
             LblClavePriValue.Text = keys[1];
             EsclavoForm.LblClavePublicValue.Text = keys[0];
@@ -120,7 +121,7 @@ namespace Criptografia.Maestro
                 {
                     if (Path.GetFileName(fileDialog.FileName) == "cp_esclavo.xml")
                     {
-                        string rsa = Services.XML.Import.ImportDataFromNode(fileDialog.FileName, "clavepublica").ToString();
+                        string rsa = Import.ImportDataFromNode(fileDialog.FileName, "clavepublica").ToString();
                         LblClavePublicaEsclavo.Text = rsa;
                     }
                     else
@@ -190,7 +191,7 @@ namespace Criptografia.Maestro
         private void BtnExportTDESEncrypted_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(LblTDESEncrypted.Text))
-                Services.XML.Export.ExportTDES(LblTDESEncrypted.Text, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\tdesencriptado.xml");
+                Export.ExportTDES(LblTDESEncrypted.Text, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\tdesencriptado.xml");
             else
                 MessageBox.Show("Primero debe generar la clave TDES encriptada.",
                                 "Wrong way",
@@ -225,7 +226,7 @@ namespace Criptografia.Maestro
                 else
                 {
                     if (Path.GetFileName(fileDialog.FileName) == "textoencriptado.xml")
-                        LblEncryptedMssg.Text = Services.XML.Import.ImportDataFromNode(fileDialog.FileName, "textoe").ToString();
+                        LblEncryptedMssg.Text = Import.ImportDataFromNode(fileDialog.FileName, "textoe").ToString();
                     
                     else
                         MessageBox.Show("El xml se tiene que llamar 'textoencriptado.xml'",

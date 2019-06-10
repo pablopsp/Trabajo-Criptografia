@@ -7,7 +7,7 @@
         /// </summary>
         /// <param name="path"></param>
         /// <param name="nodeName"></param>
-        /// <returns></returns>
+        /// <returns>Node value</returns>
         public static object ImportDataFromNode(string path, string nodeName) => 
                              XMLParser.SimpleXMLParser.GetDataFromSimpleNode(path, nodeName);
     }

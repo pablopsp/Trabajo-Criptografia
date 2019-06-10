@@ -176,7 +176,7 @@
             // LblMssgEncrypted
             // 
             this.LblMssgEncrypted.AutoSize = true;
-            this.LblMssgEncrypted.Location = new System.Drawing.Point(166, 500);
+            this.LblMssgEncrypted.Location = new System.Drawing.Point(94, 500);
             this.LblMssgEncrypted.Name = "LblMssgEncrypted";
             this.LblMssgEncrypted.Size = new System.Drawing.Size(0, 13);
             this.LblMssgEncrypted.TabIndex = 21;

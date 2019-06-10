@@ -6,6 +6,11 @@ namespace Criptografia.Maestro
     public class MultiFormContext : ApplicationContext
     {
         private int openForms;
+
+        /// <summary>
+        /// Permite ejecutar mas de un Windows Form a la vez
+        /// </summary>
+        /// <param name="forms"></param>
         public MultiFormContext(params Form[] forms)
         {
             openForms = forms.Length;

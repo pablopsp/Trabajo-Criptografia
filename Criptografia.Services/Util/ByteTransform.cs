@@ -5,6 +5,11 @@ namespace Criptografia.Services.Util
 {
     public class ByteTransform
     {
+        /// <summary>
+        /// Parsea un string hexadecimal a array de bytes
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns>Valor hexadecimal en forma de byte array</returns>
         public static byte[] HexStringToByteArray(string hex)
         {
             string hexVal = DeleteSpacesFromHex(hex);
@@ -14,6 +19,11 @@ namespace Criptografia.Services.Util
                      .ToArray();
         }
 
+        /// <summary>
+        /// Borra los guiones de un string hexadecimal
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>Hexa string</returns>
         public static string DeleteSpacesFromHex(string input) => string.Join("", input.Split('-'));
     }
 }

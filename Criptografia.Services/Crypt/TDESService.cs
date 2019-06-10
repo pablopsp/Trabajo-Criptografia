@@ -12,10 +12,14 @@ namespace Criptografia.Services.Crypt
         public static byte[] TDESIv;
         public static IEnumerable<string> Keys = TripleKeys();
 
+        /// <summary>
+        /// Crea el IV y la clave TDES la cual divide en 3
+        /// </summary>
+        /// <returns>IEnumerable string (keys)</returns>
         private static IEnumerable<string> TripleKeys()
         {
-            //TDESIv = TripleDES.Create().IV;
             IEnumerable<string> result;
+
         ReDoit:
             if (TDESKey != null)
             {               
@@ -38,6 +42,12 @@ namespace Criptografia.Services.Crypt
             return result;
         }
 
+        /// <summary>
+        /// Encripta un string hexadecimal
+        /// </summary>
+        /// <param name="textToEncrypt"></param>
+        /// <param name="keyTDES"></param>
+        /// <returns>Encrypted data</returns>
         public static byte[] Encrypt(string textToEncrypt, byte[] keyTDES)
         {
             try
@@ -62,6 +72,12 @@ namespace Criptografia.Services.Crypt
 
         }
 
+        /// <summary>
+        /// Desencripta un string encriptado en forma hexadecimal
+        /// </summary>
+        /// <param name="textToDecrypt"></param>
+        /// <param name="keyTDES"></param>
+        /// <returns>Decrypted data</returns>
         public static byte[] Decrypt(string textToDecrypt, byte[] keyTDES)
         {
             try

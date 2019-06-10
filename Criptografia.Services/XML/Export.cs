@@ -22,9 +22,12 @@ namespace Criptografia.Services.XML
             SimpleXMLCreate.FlatXML(dict, filePathWithName);
         }
 
-        public static void ExportHexStringToXML(string nodeName, string hexString, string filePathWithName) =>
-            SimpleXMLCreate.FlatXML(new Dictionary<string, string> { { nodeName, hexString } }, filePathWithName);
-
+        /// <summary>
+        /// Exporta las claves tdes y el IV a un xml
+        /// con el nombre 'tdesencriptado.xml'
+        /// </summary>
+        /// <param name="encryptedTDES"></param>
+        /// <param name="filePathWithName"></param>
         public static void ExportTDES(string encryptedTDES, string filePathWithName)
         {
             string[] keys = ByteTransform.DeleteSpacesFromHex(encryptedTDES).Split(new[] {"\r\n"}, StringSplitOptions.None);
@@ -38,5 +41,15 @@ namespace Criptografia.Services.XML
 
             SimpleXMLCreate.FlatXML(values, filePathWithName);
         }
+
+        /// <summary>
+        /// Exporta el mensaje encriptado en forma hexadecimal
+        /// a un xml con el nombre 'textoencriptado.xml'
+        /// </summary>
+        /// <param name="nodeName"></param>
+        /// <param name="hexString"></param>
+        /// <param name="filePathWithName"></param>
+        public static void ExportHexStringToXML(string nodeName, string hexString, string filePathWithName) =>
+            SimpleXMLCreate.FlatXML(new Dictionary<string, string> { { nodeName, hexString } }, filePathWithName);
     }
 }

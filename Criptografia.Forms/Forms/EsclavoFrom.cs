@@ -83,7 +83,7 @@ namespace Criptografia.Maestro.Forms
         }
         private void GenerateRSA()
         {
-            string[] keys = Services.Crypt.RSAService.GeneratePrivateAndPublicKey();
+            string[] keys = RSAService.GeneratePrivateAndPublicKey();
             LblClavePublicValue.Text = keys[0];
             LblClavePriValue.Text = keys[1];
             MaestroForm.LblClavePublicValue.Text = keys[0];
@@ -102,7 +102,7 @@ namespace Criptografia.Maestro.Forms
         private void BtnExportRSA_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(LblClavePublicValue.Text))
-                Services.XML.Export.ExportPublicRSA(LblClavePublicValue.Text, 
+                Export.ExportPublicRSA(LblClavePublicValue.Text, 
                                                     Environment.GetFolderPath(
                                                         Environment.SpecialFolder.Desktop) + @"\cp_esclavo.xml");
 
@@ -205,7 +205,7 @@ namespace Criptografia.Maestro.Forms
                                         MessageBoxIcon.Error);
             else
             {            
-                byte[] msgEncrypted = Services.Crypt.TDESService.Encrypt(MssgToEncrypt.Text, 
+                byte[] msgEncrypted = TDESService.Encrypt(MssgToEncrypt.Text, 
                                                                  ByteTransform.HexStringToByteArray(LblTDESDecrypted.Text));
                 LblMssgEncrypted.Text = ByteTransform.DeleteSpacesFromHex(BitConverter.ToString(msgEncrypted));
             }
@@ -218,7 +218,7 @@ namespace Criptografia.Maestro.Forms
         private void BtnExportToXML_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(LblMssgEncrypted.Text))
-                Services.XML.Export.ExportHexStringToXML("textoe", LblMssgEncrypted.Text,
+                Export.ExportHexStringToXML("textoe", LblMssgEncrypted.Text,
                                                     Environment.GetFolderPath(
                                                         Environment.SpecialFolder.Desktop) + @"\textoencriptado.xml");
 
