@@ -15,6 +15,18 @@ namespace Criptografia.Maestro
     {
         public static Label LblClavePriValue;
         public static Label LblClavePublicValue;
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            if (e.Button == MouseButtons.Left)
+            {
+                Capture = false;
+                Message msg = Message.Create(Handle, 0XA1, new IntPtr(2), IntPtr.Zero);
+                WndProc(ref msg);
+            }
+        }
+
         private void InitializeSharedLbl()
         {
             LblClavePriValue = new Label();
